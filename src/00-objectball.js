@@ -246,7 +246,7 @@ function mostPointsScored()
         return playerWithMostPoints; 
 
 }
-// fuinction to find winning team with the most points
+// function to find winning team with the most points
 function winningTeam()
 {
     let homeTeamPoints = 0;
@@ -266,4 +266,27 @@ function winningTeam()
     //determining the winner base on the total points for each team
     return homeTeamPoints > awayTeamPoints ? gameObject().home.teamName : gameObject.away.teamName;    
 }
+//function to find the player with the longest name
+function playerWithLongestName()
+{
+    let longestName = "";
+
+    //checking through both teams
+    for (const team in gameObject())
+        {
+         const players = gameObject()[team].players;
+
+         // checking each players of each team
+      for (const playerName in players)
+         {
+        //checking current player name is longer then new player
+        if (playerName.length > longestName.length)
+            {
+                longestName = playerName;
+            }
+        }
+    }
+    return longestName;  // return the player with the longest name     
+}
+
 
