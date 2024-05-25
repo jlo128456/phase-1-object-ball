@@ -221,4 +221,49 @@ function bigShoeRebounds()
     }
     return playerWithLargestShoeSize.rebounds; // return value of the biggest shoe size
 }
+//function to find the player with the most points
+function mostPointsScored()
+{
+    let maxPoints = -Infinity; // unbounded floating numerical value so not to crash function
+    let playerWithMostPoints = null;
+
+    //checking throught home and away team
+    for (const team in gameObject())
+        {
+            const players =gameObject()[team].players;
+
+      for (const playerName in players)
+        {
+            const player = players[playerName];
+
+            if(player.points > maxPoints)
+                {
+                    maxPoints =player.points;
+                    playerWithMostPoints = playerName;
+                }
+            }
+        }
+        return playerWithMostPoints; 
+
+}
+// fuinction to find winning team with the most points
+function winningTeam()
+{
+    let homeTeamPoints = 0;
+    let awayTeamPoints = 0;
+
+    //calculate total points for home team
+    for (const player in gameObject().home.players)
+        {
+            homeTeamPoints += gameObject().home.players[player].points;
+        }
+    //calculte total points for away team
+    for (const player in gameObject().away.players)
+        {
+            awayTeamPoints += gameObject().away.players[player].points;
+        }    
+
+    //determining the winner base on the total points for each team
+    return homeTeamPoints > awayTeamPoints ? gameObject().home.teamName : gameObject.away.teamName;    
+}
 
